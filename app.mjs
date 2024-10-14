@@ -15,12 +15,12 @@ async function fetchUsersWithPosts() {
 
         const usersWithPosts = await Promise.all(
             users.map(async (user) => {
-                const userPostsApi = `${postsApi}${user.id}`; // исправлено на шаблонные строки
+                const userPostsApi = `${postsApi}${user.id}`; 
                 
                 const postsResponse = await fetch(userPostsApi);
                 
                 if (!postsResponse.ok) {
-                    throw new Error(`Failed to get posts for user ID ${user.id}`); // исправлено добавление кавычек
+                    throw new Error(`Failed to get posts for user ID ${user.id}`); 
                 }
                 
                 const posts = await postsResponse.json();
@@ -28,7 +28,7 @@ async function fetchUsersWithPosts() {
                 return {
                     id: user.id,
                     name: user.name,
-                    posts: posts.map(post => post.title) // Массив заголовков постов
+                    posts: posts.map(post => post.title) 
                 };
             })
         );
